@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:config/value.properties"/>
+
+    <bean id="hello2" class="myspring.di.xml.Hello">
+        <constructor-arg name="name" value="${myname}"/>
+        <constructor-arg name="printer" ref="${myprinter}"/>
+        <property name="names">
+            <list>
+                <value>${value1}</value>
+                <value>${value2}</value>
+                <value>${value3}</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="hello" class="myspring.di.xml.Hello">
+        <property name="name" value="Spring"/>
+        <property name="printer" ref="printer"/>
+
+        <property name="ages">
+            <map>
+                <entry key="Kim" value="30"/>
+                <entry key="Lee" value="35"/>
+                <entry key="Ahn" value="40"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="printer" class="myspring.di.xml.StringPrinter"/>
+    <bean id="consolePritner" class="myspring.di.xml.ConsolePrinter"/>
+</beans>
